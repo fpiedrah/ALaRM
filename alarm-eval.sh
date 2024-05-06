@@ -14,7 +14,10 @@ python -m spacy download en_core_web_sm
 
 echo "*************************************"
 which nvidia-smi
+export CUDA_HOME=$(which nvidia-smi)
 echo "*************************************"
+
+
 
 git clone https://github.com/casper-hansen/AutoAWQ_kernels
 pip install -e AutoAWQ_kernels/.
