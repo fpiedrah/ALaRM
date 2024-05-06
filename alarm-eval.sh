@@ -12,7 +12,6 @@ module load cuda
 
 # INSTALL ALARM
 pip install -r requirements.txt
-pip install accelerate
 pip install -e trl/.
 
 # INSTALL AWQ KERNELS
