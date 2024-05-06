@@ -3,6 +3,7 @@ transformers==4.38.2
 autoawq==0.2.3
 peft==0.5.0
 textstat==0.7.3
+autoawq-kernels
 language_tool_python==2.7.1
 lingua-language-detector==2.0.2
 datasets
