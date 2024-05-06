@@ -14,6 +14,7 @@ from typing import List, Optional
 from torch.utils.data import Dataset, DataLoader
 from transformers import (
     AutoTokenizer,
+    AutoModelForCausalLM,
     PreTrainedModel,
     LlamaConfig,
     LlamaModel,
@@ -662,6 +663,7 @@ def test():
         completeness_reward_scale=args.completeness_scale,
     )
 
+    # NO QUANTIZATION
     """
     ultra_tokenizer = LlamaTokenizer.from_pretrained("openbmb/UltraRM-13b")
     ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
@@ -669,9 +671,18 @@ def test():
         "": current_device
     })
     """
+   
+    # AWY QUANTIZATION
+    """
     ultra_tokenizer = AutoTokenizer.from_pretrained("TheBloke/UltraRM-13B-AWQ", trust_remote_code=False)
     ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
     ultra_rm = AutoAWQForCausalLM.from_quantized("TheBloke/UltraRM-13B-AWQ", fuse_layers=True, trust_remote_code=False, safetensors=True)
+    """
+
+    # GPTQ QUANTIZATION
+    ultra_tokenizer = AutoTokenizer.from_pretrained("TheBloke/UltraRM-13B-GPTQ", trust_remote_code=False)
+    ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
+    ultra_rm = AutoModelForCausalLM.from_pretrained("TheBloke/UltraRM-13B-GPTQ", device_map="auto", trust_remote_code=False, revision="main")
 
     ultra_template = "Human: {instruction}\nAssistant: {completion}"
 

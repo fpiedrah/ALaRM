@@ -15,8 +15,8 @@ pip install -r requirements.txt
 pip install -e trl/.
 
 # INSTALL AWQ KERNELS
-git clone https://github.com/casper-hansen/AutoAWQ_kernels
-pip install -e AutoAWQ_kernels/.
+# git clone https://github.com/casper-hansen/AutoAWQ_kernels
+# pip install -e AutoAWQ_kernels/.
 
 # DOWNLOAD DATASET
 python -m spacy download en_core_web_sm
