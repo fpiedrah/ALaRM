@@ -682,7 +682,7 @@ def test():
     # GPTQ QUANTIZATION
     ultra_tokenizer = AutoTokenizer.from_pretrained("TheBloke/UltraRM-13B-GPTQ", trust_remote_code=False)
     ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
-    ultra_rm = AutoModelForCausalLM.from_pretrained("TheBloke/UltraRM-13B-GPTQ", device_map="auto", trust_remote_code=False, revision="gptq-4bit-32g-actorder_True")
+    ultra_rm = LlamaRewardModel.from_pretrained("TheBloke/UltraRM-13B-GPTQ", device_map="auto", trust_remote_code=False, revision="gptq-4bit-32g-actorder_True")
 
     ultra_template = "Human: {instruction}\nAssistant: {completion}"
 
