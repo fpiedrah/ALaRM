@@ -9,12 +9,18 @@
 
 module load cuda
 
-pip install autoawq-kernels
+# INSTALL AWQ KERNELS
+git clone https://github.com/casper-hansen/AutoAWQ_kernels
+pip install -e AutoAWQ_kernels/.
+
+# INSTALL ALARM
 pip install -r requirements.txt
 pip install -e trl/.
 
+# DOWNLOAD DATASET
 python -m spacy download en_core_web_sm
 
+# RUN ALARM EVALUATION
 accelerate launch --multi_gpu ./long-form-QA/train_ppo.py \
   --save_dir ./long-form-QA/model_generations/seed42/hierarchical.json \
   --sigmoid_shaping --reward_type hierarchical \
