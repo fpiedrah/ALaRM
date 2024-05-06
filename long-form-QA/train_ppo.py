@@ -834,7 +834,6 @@ def test():
     test_rewards = torch.tensor(test_rewards).to(current_device)
     test_response_length = torch.tensor(test_response_length).to(current_device)
 
-    gathered_list = None
     if accelerator.use_distributed:
         import torch.distributed as dist
 
@@ -867,7 +866,7 @@ def test():
                     unique_list.append(item)
             return unique_list
 
-        gathered_list = remove_duplicate_dicts(gathered_list)
+        gathered_list = remove_duplicate_dicts(test_gathered_list)
         sorted_list = sorted(gathered_list, key=lambda d: d['query'])
         with open(args.save_dir, "w") as f:
             json.dump(sorted_list, f, indent=4)
