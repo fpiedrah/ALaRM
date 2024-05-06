@@ -13,10 +13,9 @@ pip install -e trl/.
 python -m spacy download en_core_web_sm
 
 echo "*************************************"
-which nvidia-smi
-locate cuda | grep /cuda$
+module load cuda
 
-export CUDA_HOME="/usr/local/cuda"
+echo $CUDA_HOME
 echo "*************************************"
 
 
