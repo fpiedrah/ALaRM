@@ -26,4 +26,4 @@ accelerate launch --multi_gpu ./long-form-QA/train_ppo.py \
   --save_dir ./long-form-QA/model_generations/seed42/hierarchical.json \
   --sigmoid_shaping --reward_type hierarchical \
   --w_rel 0 --w_fact 1 --w_comp 0 --seed 42 --run_name test_hierarchical \
-  --test --policy_ckpt ./long-form-QA/model_ckpts/t5-large-1k-train
+  --test --batch_size 1 --policy_ckpt ./long-form-QA/model_ckpts/t5-large-1k-train
