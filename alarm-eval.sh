@@ -14,6 +14,9 @@ python -m spacy download en_core_web_sm
 
 echo "*************************************"
 which nvidia-smi
+which nvcc
+cat /usr/local/cuda/version.txt
+
 export CUDA_HOME=$(which nvidia-smi)
 echo "*************************************"
 
