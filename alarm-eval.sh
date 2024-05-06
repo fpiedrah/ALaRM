@@ -7,15 +7,13 @@
 #SBATCH -G 1
 #SBATCH --partition=3090-gcondo
 
+module load cuda
+
 pip install autoawq-kernels
 pip install -r requirements.txt
 pip install -e trl/.
 
 python -m spacy download en_core_web_sm
-
-module load cuda
-#git clone https://github.com/casper-hansen/AutoAWQ_kernels
-#pip install -e AutoAWQ_kernels/.
 
 accelerate launch --multi_gpu ./long-form-QA/train_ppo.py \
   --save_dir ./long-form-QA/model_generations/seed42/hierarchical.json \
