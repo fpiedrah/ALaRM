@@ -2,7 +2,7 @@
 
 #SBATCH -n 16
 #SBATCH --mem=64g
-#SBATCH -t 3:00:00
+#SBATCH -t 6:00:00
 #SBATCH -p gpu
 #SBATCH -G 1
 #SBATCH --partition=3090-gcondo
