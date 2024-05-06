@@ -834,6 +834,7 @@ def test():
     test_rewards = torch.tensor(test_rewards).to(current_device)
     test_response_length = torch.tensor(test_response_length).to(current_device)
 
+    gathered_list = None
     if accelerator.use_distributed:
         import torch.distributed as dist
 
