@@ -22,6 +22,7 @@ from transformers import (
 from my_reward import FineGrainedReward
 from trl import PPOConfig
 from pathlib import Path
+from awq import AutoAWQForCausalLM
 
 
 def set_seed(seed=42):
@@ -661,11 +662,17 @@ def test():
         completeness_reward_scale=args.completeness_scale,
     )
 
+    """
     ultra_tokenizer = LlamaTokenizer.from_pretrained("openbmb/UltraRM-13b")
     ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
     ultra_rm = LlamaRewardModel.from_pretrained("openbmb/UltraRM-13b", torch_dtype=torch.bfloat16, device_map={
         "": current_device
     })
+    """
+    ultra_tokenizer = AutoTokenizer.from_pretrained("TheBloke/UltraRM-13B-AWQ", trust_remote_code=False)
+    ultra_tokenizer.pad_token_id = ultra_tokenizer.eos_token_id
+    ultra_rm = AutoAWQForCausalLM.from_quantized("TheBloke/UltraRM-13B-AWQ", fuse_layers=True, trust_remote_code=False, safetensors=True)
+
     ultra_template = "Human: {instruction}\nAssistant: {completion}"
 
     # prepare reward models
