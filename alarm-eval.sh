@@ -9,7 +9,6 @@
 
 pip install -r requirements.txt
 pip install -e ./trl/.
-pip install autoawq
 
 python -m spacy download en_core_web_sm
 
