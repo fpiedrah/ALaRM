@@ -16,8 +16,10 @@ echo "*************************************"
 which nvidia-smi
 which nvcc
 cat /usr/local/cuda/version.txt
+ls /usr/local/cuda
+ls /usr/local/
 
-export CUDA_HOME=$(which nvidia-smi)
+export CUDA_HOME="/usr/local/cuda"
 echo "*************************************"
 
 
